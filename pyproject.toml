@@ -19,6 +19,8 @@ dependencies = [
     "marimo>=0.9",
     "jupyterlab>=4.2",
     "ipykernel>=6.29",
+    "openai>=3.37.0",
+    "python-dotenv>=1.2.4",
 ]
 
 [dependency-groups]

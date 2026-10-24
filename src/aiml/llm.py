@@ -1,0 +1,74 @@
+"""One LLM client for the whole repo, free providers only.
+
+Every provider here speaks the OpenAI-compatible API, so a single SDK covers all of them.
+Switch with environment variables (in .env):
+
+    LLM_PROVIDER=gemini   # free tier, strong model (default); needs GEMINI_API_KEY
+    LLM_PROVIDER=groq     # free tier, very fast open models; needs GROQ_API_KEY
+    LLM_PROVIDER=ollama   # local and offline; slow on an 8 GB laptop, fallback only
+    LLM_MODEL=...         # optional override of the provider's default model
+"""
+
+import os
+
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+
+PROVIDERS = {
+    "ollama": {
+        "base_url": "http://localhost:11434/v1",
+        "key_env": None,
+        "model": "qwen3:4b",
+        "embed_model": "nomic-embed-text",
+    },
+    "gemini": {
+        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "key_env": "GEMINI_API_KEY",
+        "model": "gemini-2.5-flash",
+        "embed_model": "gemini-embedding-001",
+    },
+    "groq": {
+        "base_url": "https://api.groq.com/openai/v1",
+        "key_env": "GROQ_API_KEY",
+        "model": "llama-3.3-70b-versatile",
+        "embed_model": None,
+    },
+}
+
+
+def _config(provider: str | None) -> tuple[str, dict]:
+    name = provider or os.getenv("LLM_PROVIDER", "gemini")
+    if name not in PROVIDERS:
+        raise ValueError(f"Unknown LLM_PROVIDER {name!r}; choose from {list(PROVIDERS)}")
+    return name, PROVIDERS[name]
+
+
+def client(provider: str | None = None) -> tuple[OpenAI, str]:
+    """Return an OpenAI-compatible client and the model name to use with it."""
+    name, cfg = _config(provider)
+    key = os.getenv(cfg["key_env"]) if cfg["key_env"] else "ollama"
+    if not key:
+        raise RuntimeError(f"Set {cfg['key_env']} in .env to use {name}")
+    model = os.getenv("LLM_MODEL", cfg["model"])
+    return OpenAI(base_url=cfg["base_url"], api_key=key), model
+
+
+def chat(prompt: str, system: str | None = None, provider: str | None = None, **kwargs) -> str:
+    """Single-turn completion. Pass temperature, max_tokens, etc. through kwargs."""
+    llm, model = client(provider)
+    messages = [{"role": "system", "content": system}] if system else []
+    messages.append({"role": "user", "content": prompt})
+    response = llm.chat.completions.create(model=model, messages=messages, **kwargs)
+    return response.choices[0].message.content
+
+
+def embed(texts: list[str], provider: str | None = None) -> list[list[float]]:
+    """Embed a batch of texts. Groq has no embeddings endpoint, so it falls back to Ollama."""
+    name, cfg = _config(provider)
+    if cfg["embed_model"] is None:
+        name, cfg = _config("ollama")
+    llm, _ = client(name)
+    response = llm.embeddings.create(model=cfg["embed_model"], input=texts)
+    return [item.embedding for item in response.data]

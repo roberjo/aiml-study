@@ -29,7 +29,7 @@ Raw-pass ladder across the program:
 | W7 | micrograd → a 2-layer MLP with your own autograd | Keras 3 (PyTorch backend) |
 | W10 | Karpathy's char-level GPT | Hugging Face `transformers` |
 | W12 | NumPy vector search | Chroma |
-| W16 | The agent loop: `while stop_reason == "tool_use"` against the Anthropic API | LangGraph |
+| W16 | The agent loop: `while stop_reason == "tool_use"` against an LLM API | LangGraph |
 | W17 | An MCP server over stdio with the official SDK, no helpers | FastMCP-style decorators |
 
 **Rule from the program doc stays sacred:** Claude can write the code; *you* write the evaluation.
@@ -50,7 +50,7 @@ Chosen for being current, fast, and the things a Staff-level reviewer recognizes
 | Classic ML | scikit-learn, XGBoost/LightGBM, **SHAP** | SHAP gives you the explainability story banks require |
 | Deep learning | **Keras 3 on PyTorch**, Colab / Modal for GPU | Satisfies the course's TF/Keras while learning the PyTorch ecosystem |
 | Tracking | **MLflow** (local server) | Every run logged: params, metrics, artifacts, model registry. This is the MLOps gap the course skips |
-| LLMs | Anthropic SDK (Claude), Ollama (local fallback), **DSPy** | DSPy turns prompts into optimizable programs |
+| LLMs | **Free tiers only**: Gemini (default) and Groq via one OpenAI-compatible client (`src/aiml/llm.py`); Ollama as offline fallback; **DSPy** | $0 budget. DSPy turns prompts into optimizable programs |
 | RAG | sentence-transformers, **Chroma**, a reranker | Matches the course; swap in pgvector later if you want |
 | Agents | Raw loop → **LangGraph**, **MCP** | Course tools, built from the protocol up |
 | Evals & tracing | **Inspect AI** or promptfoo for eval suites, **Langfuse** or **Arize Phoenix** (self-hosted, Docker) for traces | Open-source replacements for LangSmith; trace viewers look great in a demo |
@@ -74,7 +74,7 @@ aiml-study/
 │   ├── data.py             dataset download + caching
 │   ├── evaluate.py         metrics, plots, cost-of-error tables
 │   ├── tracking.py         MLflow helpers
-│   └── llm.py              Claude client w/ spend logging
+│   └── llm.py              one client for free LLM providers
 ├── weeks/wNN-topic/        one folder per week: notebook(s), README, get_data.py
 ├── projects/               the 4 projects + capstone, each a deployable unit
 ├── site/                   Quarto site (write-ups, model cards, design docs)
@@ -158,7 +158,7 @@ Don't install everything on day one. Each course adds one layer:
 |---|---|---|---|
 | Foundation | W1–3 | uv, ruff, marimo, DuckDB, Altair, Quarto | ① Living Lab |
 | ML platform | W4–9 | scikit-learn, XGBoost, SHAP, MLflow, Keras 3 | ② Fraud console (models) |
-| GenAI | W10–15 | Claude API, DSPy, Chroma, Inspect/promptfoo, CI evals | ③ Reg Z Copilot |
+| GenAI | W10–15 | Gemini/Groq free tiers, DSPy, Chroma, Inspect/promptfoo, CI evals | ③ Reg Z Copilot |
 | Agents | W16–19 | LangGraph, MCP, Langfuse/Phoenix (Docker) | ④ Flight Recorder |
 | Production | W20–23 | FastAPI, Docker, Next.js, Terraform, AWS, Evidently | ② console UI + ⑤ Capstone |
 
@@ -168,6 +168,7 @@ Don't install everything on day one. Each course adds one layer:
 
 - [x] Repo scaffold, uv env, ruff, `.gitignore`, `CLAUDE.md`, review skill
 - [ ] Create the GitHub repo and push
-- [ ] Kaggle + Hugging Face accounts; API key with a $20 cap in `.env`
-- [ ] `brew install --cask quarto`, `brew install ollama` and pull a small model
+- [ ] Kaggle + Hugging Face accounts; free Gemini and Groq API keys in `.env`
+- [ ] `brew install --cask quarto`
+- [x] Ollama installed with `qwen3:4b` + `nomic-embed-text` (offline fallback)
 - [ ] Open `weeks/w01-setup/` and do the marimo tutorial: `uv run marimo tutorial intro`

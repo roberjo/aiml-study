@@ -6,6 +6,7 @@ A personal AI/ML study repo. The goal is for the owner to **learn**, so optimize
 - **Do not write evaluation code** (metrics, eval sets, judge prompts, test harnesses) unless explicitly asked. Review it, critique it, suggest what's missing — but the owner writes it.
 - On "raw pass" files (`raw.py`), don't import the framework being learned (no sklearn in a from-scratch regression). Prefer hints over full solutions.
 - Explain *why* when introducing a library feature or a modeling choice.
+- LLM calls go through `aiml.llm` (free providers only: Gemini, Groq, Ollama). No paid APIs.
 - Public or synthetic data only. Never add work data, credentials, or bank-internal references.
 
 ## Conventions
