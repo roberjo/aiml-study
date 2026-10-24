@@ -44,3 +44,8 @@ extend-include = ["*.ipynb"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# marimo notebooks: a bare `fig` displays output; markdown cells hold long prose lines
+"weeks/**/*.py" = ["B018", "E501"]
+"projects/**/*.py" = ["B018", "E501"]
