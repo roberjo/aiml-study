@@ -9,7 +9,7 @@ Formats: **T** text, **I** text + image/chart, **C** carousel (PDF), **V** short
 |---|---|---|---|---|---|
 | 0 | Kickoff | Course review + setup | I'm rebuilding a $3,950 AI/ML program in public for $0. What the fee really buys is accountability, not content | Structure + credential vs. cost + freedom | T |
 | 1 | W1 | Math refresher, environment | Notebooks as code: why I picked reactive marimo notebooks over Jupyter, and what a matrix actually *does* to space | Familiar tools vs. reproducibility and clean diffs | I |
-| 2 | W2 | Ride-sharing demand EDA | Stop loading data into memory: querying millions of taxi trips in place with DuckDB | pandas familiarity vs. DuckDB/Polars speed | I |
+| 2 | W2 | Wikipedia attention-demand EDA | What a billion Wikipedia pageviews say about what the world pays attention to, queried in place with DuckDB | pandas familiarity vs. DuckDB/Polars speed; human vs. bot traffic | I |
 | 3 | W3 | Credit eligibility EDA | Charts aren't findings. Rewriting my EDA so a non-technical reader could act on it | Thoroughness vs. what a stakeholder will read | I |
 | 4 | W4 | Insurance premium regression | Linear regression three ways (normal equation, gradient descent, sklearn) and what the library hides | Closed form vs. iterative; understanding vs. speed | I |
 | 5 | W5 | Credit trees + classification metrics | 95% accuracy, useless model. Why accuracy lies on imbalanced data | Precision vs. recall when the cost is a rejected applicant | I |

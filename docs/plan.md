@@ -4,6 +4,9 @@ The [program doc](./Self-Study%20AI%20ML%20Program.md) is the **what** (23 weeks
 This is the **how**: the learning method, the tooling stack, and the five signature builds that turn
 a pile of notebooks into a portfolio that looks like it came from a top ML platform team.
 
+> **Dataset swap:** W2 uses **Wikipedia pageviews** instead of NYC taxi trips. Same skills (demand,
+> seasonality, spikes, data too big for memory), more surprising data. The program doc's other datasets stand.
+>
 > `study-plan.md` is the earlier 10-module tracker. The 23-week program supersedes it; the module
 > order is the same, so nothing there is lost.
 
@@ -45,7 +48,7 @@ Chosen for being current, fast, and the things a Staff-level reviewer recognizes
 | Env & deps | **uv** (+ `pyproject.toml`, dependency groups per course) | Reproducible in seconds; one lockfile for the whole repo |
 | Lint/format | **ruff** | One tool, instant |
 | Notebooks | **marimo** (primary), Jupyter for Colab weeks | Reactive, stored as `.py` (clean git diffs), runs as an app, exports to WASM so readers can run your EDA *in their browser* |
-| Data | **DuckDB + Polars**, pandas for compatibility | NYC TLC is tens of GB of Parquet — query it in place with DuckDB SQL instead of loading it |
+| Data | **DuckDB + Polars**, pandas for compatibility | Wikipedia pageview dumps run to billions of rows — query them in place with DuckDB SQL instead of loading them |
 | Viz | **Altair** (declarative, interactive), Plotly, seaborn for quick looks | Charts that are tooltipped and linked, not static PNGs |
 | Classic ML | scikit-learn, XGBoost/LightGBM, **SHAP** | SHAP gives you the explainability story banks require |
 | Deep learning | **Keras 3 on PyTorch**, Colab / Modal for GPU | Satisfies the course's TF/Keras while learning the PyTorch ecosystem |
@@ -92,8 +95,8 @@ The `src/aiml` package is the quiet win: by W23 you've built a small internal ML
 These are the "stunning" parts: each one turns a course project into something you'd demo in an interview.
 
 ### ① Living Lab — interactive EDA you can run in the browser (W2–W3)
-marimo notebooks over NYC TLC (DuckDB on Parquet) and credit eligibility, exported to **WASM** and
-embedded in the Quarto site. Readers drag a slider (hour of day, borough) and the Altair charts
+marimo notebooks over Wikipedia pageviews (DuckDB over the bulk dumps) and credit eligibility, exported to
+**WASM** and embedded in the Quarto site. Readers pick an article, language, or date range and the Altair charts
 re-render live, with no server involved. The W3 "five findings" becomes a scrollytelling page.
 
 ### ② Fraud Risk Console — bank-grade model governance (W9 → W20)
