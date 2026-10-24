@@ -25,7 +25,7 @@ PROVIDERS = {
     "groq": {
         "base_url": "https://api.groq.com/openai/v1",
         "key_env": "GROQ_API_KEY",
-        "model": "llama-3.3-70b-versatile",
+        "model": "openai/gpt-oss-120b",
         "embed_model": None,
     },
 }
@@ -49,7 +49,11 @@ def client(provider: str | None = None) -> tuple[OpenAI, str]:
 
 
 def chat(prompt: str, system: str | None = None, provider: str | None = None, **kwargs) -> str:
-    """Single-turn completion. Pass temperature, max_tokens, etc. through kwargs."""
+    """Single-turn completion. Pass temperature, max_tokens, etc. through kwargs.
+
+    Reasoning models (gpt-oss, Gemini 2.5) spend tokens thinking before they answer: a small
+    max_tokens can return an empty string. Leave it unset or give it a few hundred.
+    """
     llm, model = client(provider)
     messages = [{"role": "system", "content": system}] if system else []
     messages.append({"role": "user", "content": prompt})
