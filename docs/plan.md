@@ -50,7 +50,7 @@ Chosen for being current, fast, and the things a Staff-level reviewer recognizes
 | Classic ML | scikit-learn, XGBoost/LightGBM, **SHAP** | SHAP gives you the explainability story banks require |
 | Deep learning | **Keras 3 on PyTorch**, Colab / Modal for GPU | Satisfies the course's TF/Keras while learning the PyTorch ecosystem |
 | Tracking | **MLflow** (local server) | Every run logged: params, metrics, artifacts, model registry. This is the MLOps gap the course skips |
-| LLMs | **Free tiers only**: Gemini (default) and Groq via one OpenAI-compatible client (`src/aiml/llm.py`); Ollama as offline fallback; **DSPy** | $0 budget. DSPy turns prompts into optimizable programs |
+| LLMs | **Free tiers only**: Gemini (default) and Groq via one OpenAI-compatible client (`src/aiml/llm.py`); **DSPy** | $0 budget. DSPy turns prompts into optimizable programs |
 | RAG | sentence-transformers, **Chroma**, a reranker | Matches the course; swap in pgvector later if you want |
 | Agents | Raw loop → **LangGraph**, **MCP** | Course tools, built from the protocol up |
 | Evals & tracing | **Inspect AI** or promptfoo for eval suites, **Langfuse** or **Arize Phoenix** (self-hosted, Docker) for traces | Open-source replacements for LangSmith; trace viewers look great in a demo |
@@ -170,5 +170,4 @@ Don't install everything on day one. Each course adds one layer:
 - [ ] Create the GitHub repo and push
 - [ ] Kaggle + Hugging Face accounts; free Gemini and Groq API keys in `.env`
 - [ ] `brew install --cask quarto`
-- [x] Ollama installed with `qwen3:4b` + `nomic-embed-text` (offline fallback)
 - [ ] Open `weeks/w01-setup/` and do the marimo tutorial: `uv run marimo tutorial intro`

@@ -5,7 +5,6 @@ Switch with environment variables (in .env):
 
     LLM_PROVIDER=gemini   # free tier, strong model (default); needs GEMINI_API_KEY
     LLM_PROVIDER=groq     # free tier, very fast open models; needs GROQ_API_KEY
-    LLM_PROVIDER=ollama   # local and offline; slow on an 8 GB laptop, fallback only
     LLM_MODEL=...         # optional override of the provider's default model
 """
 
@@ -17,12 +16,6 @@ from openai import OpenAI
 load_dotenv()
 
 PROVIDERS = {
-    "ollama": {
-        "base_url": "http://localhost:11434/v1",
-        "key_env": None,
-        "model": "qwen3:4b",
-        "embed_model": "nomic-embed-text",
-    },
     "gemini": {
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
         "key_env": "GEMINI_API_KEY",
@@ -48,7 +41,7 @@ def _config(provider: str | None) -> tuple[str, dict]:
 def client(provider: str | None = None) -> tuple[OpenAI, str]:
     """Return an OpenAI-compatible client and the model name to use with it."""
     name, cfg = _config(provider)
-    key = os.getenv(cfg["key_env"]) if cfg["key_env"] else "ollama"
+    key = os.getenv(cfg["key_env"])
     if not key:
         raise RuntimeError(f"Set {cfg['key_env']} in .env to use {name}")
     model = os.getenv("LLM_MODEL", cfg["model"])
@@ -65,10 +58,10 @@ def chat(prompt: str, system: str | None = None, provider: str | None = None, **
 
 
 def embed(texts: list[str], provider: str | None = None) -> list[list[float]]:
-    """Embed a batch of texts. Groq has no embeddings endpoint, so it falls back to Ollama."""
+    """Embed a batch of texts. Groq has no embeddings endpoint, so it falls back to Gemini."""
     name, cfg = _config(provider)
     if cfg["embed_model"] is None:
-        name, cfg = _config("ollama")
+        name, cfg = _config("gemini")
     llm, _ = client(name)
     response = llm.embeddings.create(model=cfg["embed_model"], input=texts)
     return [item.embedding for item in response.data]
