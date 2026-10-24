@@ -7,6 +7,7 @@ pieces the course skips (model risk management, MLOps, monitoring).
 - **Curriculum:** [docs/Self-Study AI ML Program.md](docs/Self-Study%20AI%20ML%20Program.md)
 - **Method, stack, and signature builds:** [docs/plan.md](docs/plan.md)
 - **LinkedIn series (one post per assignment):** [posts/](posts/)
+- **Tracker:** [AI/ML Study project board](https://github.com/users/roberjo/projects/1), one issue per week
 
 ## Quick start
 
