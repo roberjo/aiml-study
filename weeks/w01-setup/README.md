@@ -12,4 +12,10 @@
 
 ## Findings
 
-## What didn't work
+## Thoughts
+
+## Trade-offs
+
+## Mistakes
+
+## Lessons learned

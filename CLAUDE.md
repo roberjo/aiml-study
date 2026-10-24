@@ -15,6 +15,7 @@ A personal AI/ML study repo. The goal is for the owner to **learn**, so optimize
 - Week folders: `weeks/wNN-topic/` with `README.md`, `get_data.py`, `raw.py`, `build.py`.
 - Reusable code goes in `src/aiml/` once it's used in two weeks.
 - Data goes in `data/` (gitignored). Large data: query Parquet with DuckDB rather than loading it all.
+- Week READMEs keep the capture headings (Thoughts, Trade-offs, Mistakes, Lessons learned); they feed the LinkedIn posts in `posts/` (see `/draft-post`).
 - `uv run ruff check . && uv run ruff format .` before committing.
 
 See `docs/plan.md` for the method and stack, and `docs/Self-Study AI ML Program.md` for the curriculum.

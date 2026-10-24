@@ -6,6 +6,7 @@ pieces the course skips (model risk management, MLOps, monitoring).
 
 - **Curriculum:** [docs/Self-Study AI ML Program.md](docs/Self-Study%20AI%20ML%20Program.md)
 - **Method, stack, and signature builds:** [docs/plan.md](docs/plan.md)
+- **LinkedIn series (one post per assignment):** [posts/](posts/)
 
 ## Quick start
 
@@ -34,6 +35,7 @@ src/aiml/      shared helpers (data, eval, tracking, LLM client)
 weeks/         one folder per week
 projects/      the four projects + capstone
 docs/          curriculum and plan
+posts/         LinkedIn series: plan, voice guide, drafts
 data/          gitignored; re-downloaded by scripts
 ```
 

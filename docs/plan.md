@@ -136,13 +136,13 @@ The program doc's rhythm, with tooling attached:
 | Weeknight 1 (90m) | Lecture/reading; take notes in the week's README | — |
 | Weeknight 2 (90m) | **Raw pass** of the week's core idea | marimo notebook |
 | Saturday (4h) | **Framework + product pass** on the build | uv, MLflow, Claude Code |
-| Sunday (15m) | Commit, tick the box in README, 3 lines on what failed | `git`, `/review-project` on project weeks |
+| Sunday (15m) | Commit, tick the box, fill the capture headings, draft the LinkedIn post | `git`, `/review-project`, `/draft-post` |
 
 Per-week folder template:
 
 ```
 weeks/w04-regression/
-├── README.md        goal · reading · findings · what failed
+├── README.md        goal · reading · findings · thoughts · trade-offs · mistakes · lessons
 ├── get_data.py      reproducible download
 ├── raw.py           marimo: from-scratch implementation
 └── build.py         marimo: framework version + eval
