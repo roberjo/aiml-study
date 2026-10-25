@@ -2,7 +2,8 @@
 week: W01
 title: Learning linear algebra, finally. The textbook said n³; my laptop said n^2.1.
 format: image
-status: draft
+status: scheduled
+scheduled: 2026-10-26 13:45
 posted:
 url:
 ---

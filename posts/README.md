@@ -54,7 +54,8 @@ They want the **thinking**: trade-offs, mistakes, lessons. Not tutorials, not hy
 week: W04
 title: Linear regression, three ways
 format: text | carousel | image
-status: draft | ready | posted
+status: draft | ready | scheduled | posted
+scheduled:         # YYYY-MM-DD HH:MM, if scheduled on LinkedIn
 posted:            # YYYY-MM-DD
 url:               # LinkedIn post URL
 ---
