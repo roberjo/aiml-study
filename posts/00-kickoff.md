@@ -4,7 +4,7 @@ title: Running through an awesome AI/ML program in public, for $0
 format: image
 status: posted
 posted: 2026-10-25
-url:
+url: https://www.linkedin.com/posts/roberjo_machinelearning-ai-learninginpublic-share-7520168214392328192-9juw/
 ---
 
 I saw a colleague post an awesome AI/ML program from UT Austin. I read the curriculum. I read it again. Then I did what any reasonable engineer would do: I decided to build it myself.

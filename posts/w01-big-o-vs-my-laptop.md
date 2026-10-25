@@ -9,23 +9,23 @@ url:
 
 Learning linear algebra, finally!
 
-The textbook says multiplying two matrices scales with n³. My laptop measured n^2.1. Both were right, and the gap taught me more than the math did.
+The textbook says multiplying two matrices scales with n³. My laptop measured n^2.1. Both were right, and figuring out why was the best part of my week.
 
-Week 1 of rebuilding a 23-week AI/ML program in public, and the rule was simple: build it all by hand before touching a library. Plain Python loops, no NumPy shortcuts. Dot product, matrix-vector product, rotation, shear, matrix multiply, determinant, inverse. Seven functions, each checked against NumPy.
+Week 1 of working through a 23-week AI/ML program in public. The rule: build everything by hand before a library is allowed anywhere near it. Plain Python loops. Dot product, matrix-vector product, rotation, shear, matrix multiply, determinant, inverse. Seven functions, each graded against NumPy, which is a humbling way to spend a weekend.
 
-Then I raced my matrix multiply against NumPy's. NumPy won by 500 to 740×. No surprise.
+Then I raced my matrix multiply against NumPy's. NumPy won by 500 to 740×. I'd love to say it was close. It was not.
 
-The surprise was the slope. n×n matrices take n³ multiplications, so doubling n should cost 8×. Mine grew like n^2.1.
+The surprise was the slope. n×n matrices need n³ multiplications, so doubling n should cost 8×. Mine grew like n^2.1. Had I accidentally invented a faster algorithm? Reader, I had not.
 
-The answer was in my own code. My matrix-vector function scaled whole columns at once, handing each column to NumPy in one call. Only two of the three nested loops ran in Python. Big-O counts multiplications. The clock measures where the time goes, and most of mine was Python's per-loop overhead.
+My matrix-vector function scaled whole columns at once, which quietly handed each column to NumPy. Only two of my three loops actually ran in Python. Big-O counts multiplications. The clock measures where the time goes, and most of mine went to Python overhead.
 
-Three mistakes:
+The blooper reel:
 
-→ My first benchmark timed each size once. The NumPy line zigzagged because I was measuring noise. Best of 7 fixed it.
-→ I pasted a code template with its ___ blanks still in it. ___ is a legal Python name, so nothing crashed. The check just quietly failed.
-→ I never wrote down a guess before running the benchmark. No prediction, no gap to learn from.
+→ My first benchmark timed each size once. The NumPy line zigzagged like a seismograph. I was measuring noise. Best of 7 fixed it.
+→ I pasted a code template with its ___ blanks still in it. Turns out ___ is a perfectly legal Python variable name. Nothing crashed. Nothing worked either.
+→ I never wrote down a guess before running the benchmark, so I'll never know how wrong I was. Probably very.
 
-The concept that finally clicked: a matrix is a list of where the basis vectors land. The minus sign in the rotation matrix made sense once I tabulated where "up" goes after a quarter turn. Left.
+What finally clicked: a matrix is just a list of where the basis vectors land. The minus sign in the rotation matrix made sense once I drew where "up" goes after a quarter turn. Left. It goes left.
 
 When did a benchmark last tell you something the Big-O didn't?
 
