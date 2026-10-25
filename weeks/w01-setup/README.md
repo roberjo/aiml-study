@@ -2,7 +2,9 @@
 
 ## Learn
 - [ ] [Essence of Linear Algebra](https://www.3blue1brown.com/topics/linear-algebra), chapters 1–7
-- [ ] [Google ML Crash Course](https://developers.google.com/machine-learning/crash-course), intro modules
+- [ ] Google ML Crash Course intro:
+  - [ ] [Intro to Machine Learning](https://developers.google.com/machine-learning/intro-to-ml)
+  - [ ] [Prerequisites and prework](https://developers.google.com/machine-learning/crash-course/prereqs-and-prework)
 
 ## Build
 - [x] Repo scaffold and uv environment
