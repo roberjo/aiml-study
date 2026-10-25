@@ -44,7 +44,10 @@ def dot(u, v):
 
     Hint: one loop, one running total. (Geometry of this is ch. 9; not needed yet.)
     """
-    raise NotImplementedError
+    total = 0
+    for i in range(len(u)):
+        total += u[i] * v[i]
+    return total
 
 
 @app.function
@@ -55,7 +58,11 @@ def matvec(A, x):
     Build it that way: a linear combination of A's columns. Then, as a bonus, write a
     second version using dot() on A's rows, and convince yourself why both agree.
     """
-    raise NotImplementedError
+    m, n = A.shape
+    total = np.zeros(m)
+    for j in range(n):
+        total = total + x[j] * A[:, j]
+    return total
 
 
 @app.function
@@ -65,13 +72,15 @@ def rotation(theta):
     Hint (ch. 3): where does i-hat = (1, 0) land after rotating by theta? And j-hat = (0, 1)?
     Those two landing spots are the matrix's columns.
     """
-    raise NotImplementedError
+    return np.array([[np.cos(theta), -np.sin(theta)],
+                     [np.sin(theta), np.cos(theta)]])
 
 
 @app.function
 def shear(k):
     """2x2 shear: i-hat stays put, j-hat moves to (k, 1)."""
-    raise NotImplementedError
+    return np.array([[1, k],
+                     [0, 1]])
 
 
 @app.cell(hide_code=True)
@@ -89,7 +98,12 @@ def matmul(A, B):
     Hint (ch. 4): column j of A @ B is A applied to column j of B. You already wrote that.
     Make sure it works for non-square shapes.
     """
-    raise NotImplementedError
+    m, n = A.shape
+    n2, p = B.shape
+    result = np.zeros((m, p))
+    for j in range(p):
+        result[:, j] = matvec(A, B[:, j])
+    return result
 
 
 @app.cell(hide_code=True)
@@ -107,7 +121,9 @@ def det2(A):
     Negative means orientation flipped (i-hat and j-hat swapped sides). Watch the gold
     square in the plots before you look up the formula, then derive it if you can.
     """
-    raise NotImplementedError
+    a, b = A[0][0], A[0][1]
+    c, d = A[1][0], A[1][1]
+    return a * d - b * c
 
 
 @app.function
@@ -116,7 +132,13 @@ def inverse2(A):
 
     Return None when det2(A) == 0: space got squished onto a line, so there's no way back (ch. 7).
     """
-    raise NotImplementedError
+    det = det2(A)
+    if det == 0:
+        return None
+    a, b = A[0][0], A[0][1]
+    c, d = A[1][0], A[1][1]
+    return np.array([[d, -b],
+                     [-c, a]]) / det
 
 
 @app.cell(hide_code=True)
@@ -282,6 +304,11 @@ def _():
     4. Your `matvec` builds the answer from **columns**. Why is that the same as taking dot products with **rows**?
     5. Which chapter's idea surprised you most, and what were you picturing wrong before?
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
