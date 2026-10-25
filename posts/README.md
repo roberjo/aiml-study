@@ -22,6 +22,10 @@ They want the **thinking**: trade-offs, mistakes, lessons. Not tutorials, not hy
 ## Voice
 
 - First person, specific, plain. Write like explaining to a sharp colleague over coffee.
+- **Friendly and funny, at your own expense.** Self-deprecating asides ("Reader, I had not."),
+  a "blooper reel" for the mistakes, a short punchline after a technical point ("Left. It goes left.").
+  The humor carries the lesson; it never replaces the numbers.
+- Open with a short, human first line (e.g. "Learning linear algebra, finally!"), then the hook.
 - **Numbers over adjectives.** "PR-AUC went from 0.71 to 0.84" beats "huge improvement".
 - **Show the trade-off, not just the choice.** What you gave up is the interesting part.
 - **Admit the mistake fully.** What you did, why it seemed right, what it cost, what you do now.
