@@ -1,42 +1,35 @@
 ---
 week: Kickoff
-title: Rebuilding a $3,950 AI/ML program in public, for $0
-format: text
-status: draft
-posted:
+title: Running through an awesome AI/ML program in public, for $0
+format: image
+status: posted
+posted: 2026-10-25
 url:
 ---
 
-There's a $3,950, 23-week AI/ML program from UT Austin that I almost signed up for.
+I saw a colleague post an awesome AI/ML program from UT Austin. I read the curriculum. I read it again. Then I did what any reasonable engineer would do: I decided to build it myself.
 
-I'm doing it myself instead, in public, for $0. Here's why that trade-off is less obvious than "free beats paid."
+Here's my thinking.
 
-The content is reproducible. Nearly every lecture topic, dataset, and case study in the curriculum has a free public equivalent.
+Almost all of the content is out there for free. Lectures, datasets, case studies. What the cert really buys is someone making sure you show up. Deadlines. A mentor. A certificate that proves to your future self that you did, in fact, finish.
 
-What the fee actually buys is structure: deadlines, weekly mentor sessions, a certificate.
+My rules for the next 23 weeks:
 
-So the real question isn't "can I learn this for free?"
-It's "can I replace accountability?"
+→ Every week ends in a commit to a public repo. Even the embarrassing weeks. Especially those.
+→ Every project gets a real metric on data the model has never seen, plus an honest write-up of what failed.
+→ Every topic gets built three times: from scratch, then with the real framework, then as something a human could actually use.
+→ One post per assignment: the trade-offs, the mistakes, and what I'd do differently.
 
-My answer for the next 23 weeks:
+I'm also adding the parts the course skips: model documentation, MLOps, and monitoring. The unglamorous stuff that decides whether a model ever escapes the notebook.
 
-→ Every week ends in a commit to a public repo.
-→ Every project reports a metric on held-out data, plus a one-page write-up of what worked and what failed.
-→ Every topic gets built three times: from scratch in NumPy, then with the industry framework, then as something another person could use.
-→ And this series: one post per assignment, covering the trade-offs, the mistakes, and what I'd do differently.
+Free cloud tiers answered the question of budget approvals for this adventure. However, lesson one was: "free" has more than one cost. Mine was time, and a little dignity.
 
-I'm also adding what the course skips: model risk documentation, MLOps, and monitoring. In regulated industries, that's what decides whether a model ships.
+Week 1 is linear algebra. Wish me luck.
 
-The first mistake happened before Week 1. To keep this free, I installed a local LLM on my 8 GB laptop. It took 53 seconds to return an empty string. Free cloud tiers (Gemini, Groq) answered in under a second.
-
-"Free" has more than one cost. Mine was time.
-
-Week 1 starts November 2: linear algebra, a reproducible Python setup, and the first commit.
-
-If you've gone through a structured ML program, or taught yourself: what do you wish you'd known in week one?
+If you've been through an ML program or taught yourself, what's the one thing you wish you'd known in week one?
 
 #MachineLearning #AI #LearningInPublic #DataScience #SoftwareEngineering
 
 ---
-**First comment:** Following along? Everything lives here, including notebooks, write-ups, and these posts: https://github.com/roberjo/aiml-study
-**Visual:** None needed. Optionally, a screenshot of the 23-week plan table.
+**First comment:** Following along? The notebooks, write-ups, and these posts all live here: https://github.com/roberjo/aiml-study
+**Visual:** Webcomic (attached on LinkedIn).
