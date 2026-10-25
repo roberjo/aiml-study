@@ -21,25 +21,32 @@ def _():
     loops and NumPy's `@`, which hands the work to compiled BLAS code. Every ML library you'll
     use from W4 onward rests on this gap.
 
-    **Before you run it, write down a guess:** for two 150 × 150 matrices, how many times faster is `@`?
+    **Before you run it, write down a guess:** for two 200 × 200 matrices, how many times faster is `@`?
     """)
     return
 
 
+@app.function
+def best_time(f, *args, repeats=7):
+    """Fastest of several runs: one run is mostly noise at microsecond scale."""
+    times = []
+    for _ in range(repeats):
+        t0 = time.perf_counter()
+        f(*args)
+        times.append(time.perf_counter() - t0)
+    return min(times)
+
+
 @app.cell
 def _():
-    sizes = [10, 25, 50, 100, 150]
+    sizes = [10, 25, 50, 100, 200, 400]
     rows = []
     for n in sizes:
         rng = np.random.default_rng(n)
         A, B = rng.normal(size=(n, n)), rng.normal(size=(n, n))
-        t0 = time.perf_counter()
-        mine = matmul(A, B)
-        t_mine = time.perf_counter() - t0
-        t0 = time.perf_counter()
-        theirs = A @ B
-        t_numpy = time.perf_counter() - t0
-        assert np.allclose(mine, theirs)
+        assert np.allclose(matmul(A, B), A @ B)
+        t_mine = best_time(matmul, A, B)
+        t_numpy = best_time(np.matmul, A, B)
         rows.append(
             {
                 "n": n,
@@ -70,8 +77,11 @@ def _():
     mo.md(r"""
     ## Questions (answer in the README)
 
-    1. How far off was your guess? On a log-log plot, the slope of your line is the exponent of
-       n in the running time. What slope do you get, and why should it be about 3?
+    1. How far off was your guess? On a log-log plot, the slope of a line is the exponent of n
+       in the running time. Multiplying two n × n matrices takes n³ multiplications, so you'd
+       expect a slope of 3. Measure your blue line's slope (pick two points: log of the time ratio
+       ÷ log of the size ratio). If it isn't 3, look at what your `matvec` hands to NumPy on each
+       loop iteration, and count how many loops actually run in Python.
     2. NumPy does the same number of multiplications. Where does the speedup come from?
     3. `np.linalg` has `det`, `inv`, and `solve`. Why do numerical people say "never compute `inv(A) @ b`,
        use `solve(A, b)`"? (One paragraph; look it up.)
