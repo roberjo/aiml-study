@@ -12,7 +12,8 @@ A personal AI/ML study repo. The goal is for the owner to **learn**, so optimize
 ## Conventions
 - uv for everything: `uv run`, `uv add` (`--group ml` etc. for course-specific deps). Python 3.12.
 - Notebooks are marimo `.py` files unless a week needs Colab/Jupyter.
-- Week folders: `weeks/wNN-topic/` with `README.md`, `get_data.py`, `raw.py`, `build.py`.
+- Week folders: `weeks/wNN-topic/` with `README.md`, `LOG.md`, `get_data.py`, `raw.py`, `build.py`.
+- `LOG.md` is a dated running log (Done, Decisions, Problems, Next). Append an entry whenever work is done on the week.
 - Reusable code goes in `src/aiml/` once it's used in two weeks.
 - Data goes in `data/` (gitignored). Large data: query Parquet with DuckDB rather than loading it all.
 - Week READMEs keep the capture headings (Thoughts, Trade-offs, Mistakes, Lessons learned); they feed the LinkedIn posts in `posts/` (see `/draft-post`).

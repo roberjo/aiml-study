@@ -23,7 +23,7 @@ cp .env.example .env         # API keys, never committed
 | Phase | Weeks | Signature build | Status |
 |---|---|---|---|
 | Pre-work | W1 | Repo + environment | In progress |
-| Python for AI | W2–3 | Living Lab (interactive EDA) | — |
+| Python for AI | W2–3 | Living Lab (interactive EDA) | W2 set up |
 | Predictive modeling | W4–9 | **Project 1:** Fraud detection + model card | — |
 | GenAI for NLP | W10–15 | **Project 2:** Reg Z policy assistant | — |
 | Agentic AI | W16–19 | **Project 3:** Helpdesk copilot | — |
